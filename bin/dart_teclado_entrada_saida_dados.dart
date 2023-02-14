@@ -19,12 +19,15 @@ void main(List<String> arguments) {
     double massa = double.parse(inputMassa);
     double altura = double.parse(inputAltura);
 
-    String resultado = calculaIMC(massa, altura);
-    print(resultado);
+    Map<String, dynamic> resultado = calculaIMC(massa: massa, altura: altura);
+    print('Massa => ${resultado["massa"]}');
+    print('Altura => ${resultado["altura"]}');
+    print('Resultado => ${resultado["resultado"]}');
+    print('Mensagem => ${resultado["mensagem"]}');
   }
 }
 
-String calculaIMC(double massa, double altura) {
+Map<String, dynamic> calculaIMC({double massa = 0, double altura = 0}) {
   double resultado = massa / (altura * altura);
   String mensagem = "";
 
@@ -44,5 +47,10 @@ String calculaIMC(double massa, double altura) {
     mensagem = "Obesidade III (mórbida)";
   }
 
-  return mensagem;
+  return {
+    "massa": massa,
+    "altura": altura,
+    "resultado": resultado,
+    "mensagem": mensagem,
+  };
 }
